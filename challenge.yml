@@ -1,7 +1,5 @@
 # This file represents the base specification of your challenge. It is used by
 # other tools to install and deploy your challenge.
-
-# Required sections
 name: "{{cookiecutter.name}}"
 author: "author"
 category: category

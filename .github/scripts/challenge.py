@@ -1,18 +1,11 @@
 
 
-
+import sys
 cat = 'reverse'
 dif = 'hard'
 data = ['Challenges : 0\n', 'Reverse : 0\n', 'Crypto : 0\n', 'per dif:\n', 'Easy : 0\n', 'Hard : 0\n']
-try:
-    file = open('./save.txt','r')
-except FileNotFoundError:
-    file = open('./save.txt','w')
-    for line in data:
-        file.write(line)
-    file.close()
-    file = open('./save.txt','r')
-with open('./save.txt','r') as file:
+
+with open(sys.argv[1],'r') as file:
     data = file.readlines()
     num = str(int(data[0][-2])+1) 
     data[0] = f'Challenges : {num}\n'

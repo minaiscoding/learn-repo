@@ -1,5 +1,6 @@
 name: challenge__validator
-on: [pull_request]
+on:
+    pull-request:
     workflow_dispatch:
 jobs:
   challenge-validator:

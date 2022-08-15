@@ -1,12 +1,12 @@
-FOLDERPATH="${BASH_REMATCH[2]}"
 
 
-if [ ! -f $FOLDERPATH/challenge.yml ]; then
+
+if [ ! -f "$2/challenge.yml" ]; then
     echo "challenge.yml file is missing!"
     exit 1
 fi
 
-FILE=$FOLDERPATH/challenge.yml
+FILE="$2/challenge.yml"
 
 python "$2"
 

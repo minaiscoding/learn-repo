@@ -1,5 +1,4 @@
-[[ $1 =~ ^([^\/]+)\/([^\/,]+) ]]
-FOLDERPATH= $2
+FOLDERPATH="${BASH_REMATCH[2]}"
 
 
 if [ ! -f $FOLDERPATH/challenge.yml ]; then
@@ -9,7 +8,7 @@ fi
 
 FILE=$FOLDERPATH/challenge.yml
 
-python $2
+python "$2"
 
 
 

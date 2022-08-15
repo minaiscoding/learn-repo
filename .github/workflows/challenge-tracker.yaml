@@ -32,7 +32,6 @@ jobs:
           echo test, and deploy your project.
           git config --global user.name "minaiscoding"
           git config --global user.email "khadir04kh@gmail.com"
-          git config --global user.name "John Doe"
           git add counter.yaml
           git commit -m 'updated counter'
           git push

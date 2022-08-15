@@ -45,7 +45,6 @@ if challenge['difficulty'] not in DIFFICULTY:
 with open(f'{sys.argv[1]}/counter.yaml','r') as file:
     data = yaml.full_load(file)
     num = data['Challenges']+1 
-    print(data)
     data['Challenges'] = num
     match challenge['category']:
         case 'web':
@@ -95,7 +94,6 @@ with open(f'{sys.argv[1]}/counter.yaml','r') as file:
         case 'EXTREME':
             num = data['extreme']+1
             data['extreme'] = num
-print(data)
 with open(f'{sys.argv[1]}/counter.yaml','w') as file:
     documents = yaml.dump(data, file,sort_keys=False)
 

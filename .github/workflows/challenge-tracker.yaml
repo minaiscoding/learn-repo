@@ -19,7 +19,7 @@ jobs:
           fileOutput: ","
 
       - id: github-checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10' 
@@ -35,4 +35,4 @@ jobs:
           git add counter.yaml
           git commit -m 'updated counter'
           git branch -a
-          git push origin remotes/origin/main
+          git push origin master

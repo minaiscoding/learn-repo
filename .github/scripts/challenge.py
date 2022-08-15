@@ -1,32 +1,104 @@
 
-
+import yaml
 import sys
-cat = 'reverse'
-dif = 'hard'
-data = ['Challenges : 0\n', 'Reverse : 0\n', 'Crypto : 0\n', 'per dif:\n', 'Easy : 0\n', 'Hard : 0\n']
+CATEGORIES=['web','reverse','pwn','linux','misc','osint','programming','crypto','forensics']
+DIFFICULTY=['easy','ezmed','medium','medhard','hard','extreme']
+with open(f"challenge.yml", "r") as stream:
+    try:
+        challenge=yaml.safe_load(stream)
+    except yaml.YAMLError as exc:
+        print(exc)
+        sys.exit(1)
+
+
+# Author validation
+if "author" not in challenge.keys():
+    print("The author of the challenge is missing.")
+    sys.exit(1)
+
+if len(challenge["author"])==0:
+    print("The author field can't be empty.")
+    sys.exit(1)
+
+# Category validation
+if "category" not in challenge.keys():
+    print("The category of the challenge is missing.")
+    sys.exit(1)
+
+if challenge['category'] not in CATEGORIES:
+    print("The category of the challenge is unkown.")
+    sys.exit(1)
+
+# Difficulty validation
+if "difficulty" not in challenge.keys():
+    print("The difficulty of the challenge is missing.")
+    sys.exit(1)
+
+if challenge['difficulty'] not in DIFFICULTY:
+    print("The difficulty of the challenge is unkown.")
+    sys.exit(1)
+
+# Flag validation
+
+
 
 with open(sys.argv[1],'r') as file:
-    data = file.readlines()
-    num = str(int(data[0][-2])+1) 
-    data[0] = f'Challenges : {num}\n'
+    data = yaml.full_load(file)
+    num = data['Challenges']+1 
     print(data)
-    match cat.upper():
-        case 'CRYPTO':
-            num = str(int(data[2][-2])+1) 
-            data[2] = f'Crypto : {num}\n' 
+    data['Challenges'] = num
+    match challenge['category'].upper():
+        case 'WEB':
+            num =data['web']+1 
+            data['web'] = num 
 # string doesn't support item assignment that's why i'm rewriting the whole line
         case 'REVERSE':
-            num = str(int(data[1][-2])+1) 
-            data[1] = f'Reverse : {num}\n'
-    match dif.upper():
+            num = data['reverse']+1
+            data['reverse'] = num
+        case 'PWN':
+            num = data['pwn']+1
+            data['pwn'] = num
+        case 'LINUX':
+            num = data['linux']+1
+            data['linux'] = num
+        case 'MISC':
+            num = data['misc']+1
+            data['misc'] = num
+        case 'OSINT':
+            num = data['osint']+1
+            data['osint'] = num
+        case 'PROGRAMMING':
+            num = data['programming']+1
+            data['programming'] = num
+        case 'CRYPTO':
+            num = data['crypto']+1
+            data['crypto'] = num
+        case 'FORENSICS':
+            num = data['forensics']+1
+            data['forensics'] = num
+    match challenge['difficulty'].upper():
         case 'EASY':
-            num = str(int(data[4][-2])+1) 
-            data[4] = f'Easy : {num}\n'
+            num = data['easy']+1
+            data['easy'] = num
+        case 'EZMED':
+            num = data['ezmed']+1
+            data['ezmed'] = num
+        case 'MEDIUM':
+            num = data['medium']+1
+            data['medium'] = num
+        case 'MEDHARD':
+            num = data['medhard']+1
+            data['medhard'] = num
         case 'HARD':
-            num = str(int(data[5][-2])+1) 
-            data[5] = f'Hard : {num}\n'
-with open('./save.txt','w') as file:
-    for line in data:
-        file.write(line)
+            num = data['hard']+1
+            data['hard'] = num
+        case 'EXTREME':
+            num = data['extreme']+1
+            data['extreme'] = num
+print(data)
+with open(sys.argv[1],'w') as file:
+    documents = yaml.dump(data, file,sort_keys=False)
+
+
 
 

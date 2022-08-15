@@ -7,7 +7,7 @@ if [ ! -f "$2/challenge.yml" ]; then
 fi
 
 FILE="$2/challenge.yml"
-
+pip install PyYaml
 python3 "$2/.github/scripts/challenge.py" "$2"
 
 

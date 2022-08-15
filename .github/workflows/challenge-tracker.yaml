@@ -35,4 +35,4 @@ jobs:
           git add counter.yaml
           git commit -m 'updated counter'
           git branch -a
-          git push remotes/origin/minaiscoding-patch-1 remotes/origin/main
+          git push origin remotes/origin/main

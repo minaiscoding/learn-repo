@@ -34,4 +34,4 @@ jobs:
           git config --global user.email "khadir04kh@gmail.com"
           git add counter.yaml
           git commit -m 'updated counter'
-          git push
+          git push origin master

@@ -3,7 +3,7 @@ import yaml
 import sys
 CATEGORIES=['web','reverse','pwn','linux','misc','osint','programming','crypto','forensics']
 DIFFICULTY=['easy','ezmed','medium','medhard','hard','extreme']
-with open(f"{sys.argv[1]}/{sys.argv[2]}/challenge.yml", "r") as stream:
+with open(f"{sys.argv[2]}/challenge.yml", "r") as stream:
     try:
         challenge=yaml.safe_load(stream)
     except yaml.YAMLError as exc:
@@ -42,7 +42,7 @@ if challenge['difficulty'] not in DIFFICULTY:
 
 
 
-with open(sys.argv[1],'r') as file:
+with open(f'{sys.argv[2]}/counter.yaml','r') as file:
     data = yaml.full_load(file)
     num = data['Challenges']+1 
     print(data)
@@ -96,7 +96,7 @@ with open(sys.argv[1],'r') as file:
             num = data['extreme']+1
             data['extreme'] = num
 print(data)
-with open(sys.argv[3],'w') as file:
+with open(f'{sys.argv[2]}/counter.yaml','w') as file:
     documents = yaml.dump(data, file,sort_keys=False)
 
 

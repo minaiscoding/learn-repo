@@ -1,5 +1,5 @@
 
-[[ $1 =~ ^([^\/]+)\/([^\/,]+) ]]
+
 
 if [ ! -f "$2/challenge.yml" ]; then
     echo "challenge.yml file is missing!"
@@ -8,7 +8,7 @@ fi
 
 FILE="$2/challenge.yml"
 
-python "$2"
+python "$2/.github/scripts/challenge.py" "$2"
 
 
 

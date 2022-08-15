@@ -8,7 +8,7 @@ fi
 
 FILE="$2/challenge.yml"
 
-python "$2/.github/scripts/challenge.py" "$2"
+python3 "$2/.github/scripts/challenge.py" "$2"
 
 
 

@@ -1,5 +1,5 @@
 
-
+[[ $1 =~ ^([^\/]+)\/([^\/,]+) ]]
 
 if [ ! -f "$2/challenge.yml" ]; then
     echo "challenge.yml file is missing!"

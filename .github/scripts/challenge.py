@@ -47,8 +47,8 @@ with open(f'{sys.argv[1]}/counter.yaml','r') as file:
     num = data['Challenges']+1 
     print(data)
     data['Challenges'] = num
-    match challenge['category'].upper():
-        case 'WEB':
+    match challenge['category']:
+        case 'web':
             num =data['web']+1 
             data['web'] = num 
 # string doesn't support item assignment that's why i'm rewriting the whole line

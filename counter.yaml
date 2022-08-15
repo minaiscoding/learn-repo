@@ -1,6 +1,6 @@
-Challenges: 3
+Challenges: 4
 Per category: null
-web: 1
+web: 2
 reverse: 2
 pwn: 0
 linux: 0
@@ -14,5 +14,5 @@ easy: 0
 ezmed: 0
 medium: 0
 medhard: 0
-hard: 3
+hard: 4
 extreme: 0

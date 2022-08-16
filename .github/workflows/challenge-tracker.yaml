@@ -1,0 +1,39 @@
+name: challenge__tracker
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  challenge-tracker:
+    runs-on: ubuntu-latest
+    steps:
+      - id: file_changes
+        uses: trilom/file-changes-action@v1.2.3
+        with:
+          output: ","
+          fileOutput: ","
+
+      - id: github-checkout
+        - uses: actions/checkout@v3
+        - uses: actions/setup-python@v4
+          with:
+            python-version: '3.10' 
+
+      - name: Validate .yml file
+        run: |
+          # scripts/yml_validation.sh
+          chmod +x "${GITHUB_WORKSPACE}/.github/scripts/shell.sh"       
+            # run script
+          "${GITHUB_WORKSPACE}/.github/scripts/shell.sh" "${{ steps.file_changes.outputs.files}}" "${GITHUB_WORKSPACE}"
+          echo test, and deploy your project.
+          git config --global user.name "minaiscoding"
+          git config --global user.email "khadir04kh@gmail.com"
+          git config --global user.name "John Doe"
+          git add counter.yaml
+          git commit -m 'updated counter'
+          git push

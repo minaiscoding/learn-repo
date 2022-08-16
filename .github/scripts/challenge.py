@@ -1,12 +1,9 @@
-import sys
+
 import yaml
-
-
+import sys
 CATEGORIES=['web','reverse','pwn','linux','misc','osint','programming','crypto','forensics']
 DIFFICULTY=['easy','ezmed','medium','medhard','hard','extreme']
-
-
-with open(f"{sys.argv[1]}/{sys.argv[2]}/challenge.yml", "r") as stream:
+with open(f"{sys.argv[1]}/challenge.yml", "r") as stream:
     try:
         challenge=yaml.safe_load(stream)
     except yaml.YAMLError as exc:
@@ -42,15 +39,10 @@ if challenge['difficulty'] not in DIFFICULTY:
     sys.exit(1)
 
 # Flag validation
-if "flags" not in challenge.keys():
-    print("The flag of the challenge is missing.")
-    sys.exit(1)
 
-if len(challenge["flags"][0])==0:
-    print("The author field can't be empty.")
-    sys.exit(1)
-# update the counter
-with open(f'{sys.argv[1]}/counter.yaml','r') as file:
+
+
+with open(sys.argv[1],'r') as file:
     data = yaml.full_load(file)
     num = data['Challenges']+1 
     print(data)
@@ -59,6 +51,7 @@ with open(f'{sys.argv[1]}/counter.yaml','r') as file:
         case 'WEB':
             num =data['web']+1 
             data['web'] = num 
+# string doesn't support item assignment that's why i'm rewriting the whole line
         case 'REVERSE':
             num = data['reverse']+1
             data['reverse'] = num
@@ -103,5 +96,9 @@ with open(f'{sys.argv[1]}/counter.yaml','r') as file:
             num = data['extreme']+1
             data['extreme'] = num
 print(data)
-with open(f'{sys.argv[1]}/counter.yaml','w') as file:
+with open(sys.argv[2],'w') as file:
     documents = yaml.dump(data, file,sort_keys=False)
+
+
+
+

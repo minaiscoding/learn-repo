@@ -9,7 +9,7 @@ fi
 
 FILE=$FOLDERPATH/challenge.yml
 
-python "$2/.github/scripts/challenge.py" "$2" "$FOLDERPATH"
+python "$2/.github/scripts/challenge.py" "$2" "$2/counter.yaml"
 
 
 

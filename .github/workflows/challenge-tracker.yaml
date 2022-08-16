@@ -7,8 +7,9 @@ on:
     branches: ["main"]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
 jobs:
-  challenge-validator:
+  challenge-tracker:
     runs-on: ubuntu-latest
     steps:
       - id: file_changes
@@ -19,17 +20,17 @@ jobs:
 
       - id: github-checkout
         uses: actions/checkout@v2
-      - name: Update counter
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: '3.10' 
       - name: update counter
         run: |
           # scripts/shell.sh
           chmod +x "${GITHUB_WORKSPACE}/.github/scripts/shell.sh"       
             # run script
           "${GITHUB_WORKSPACE}/.github/scripts/shell.sh" "${{ steps.file_changes.outputs.files}}" "${GITHUB_WORKSPACE}"
-          echo Updating ...
+          echo updating main
+          
           git config --global user.name "minaiscoding"
           git config --global user.email "khadir04kh@gmail.com"
           git add counter.yaml

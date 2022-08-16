@@ -6,4 +6,4 @@ flag: "Shellmates{flag}"
 description: This is a sample description
 value: 100
 type: standard
-test: ver2
+test: ver3

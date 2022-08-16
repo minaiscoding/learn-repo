@@ -45,6 +45,8 @@ try:
 except FileNotFoundError:
     file = open(f'{sys.argv[1]}/counter.yaml','w')
     file.writelines('Challenges : 0\n')
+    file.close()
+    file = open(f'{sys.argv[1]}/counter.yaml','r')
 
 with file:
     data = yaml.full_load(file)

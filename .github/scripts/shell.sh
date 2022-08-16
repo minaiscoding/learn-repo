@@ -1,15 +1,14 @@
-[[ $1 =~ ^([^\/]+)\/([^\/,]+) ]]
-FOLDERPATH="$2"
 
 
-if [ ! -f $FOLDERPATH/challenge.yml ]; then
+
+if [ ! -f "$2/challenge.yml" ]; then
     echo "challenge.yml file is missing!"
     exit 1
 fi
 
-FILE=$FOLDERPATH/challenge.yml
-
-python "$2/.github/scripts/challenge.py" "$2" "$FOLDERPATH"
+FILE="$2/challenge.yml"
+pip install PyYaml
+python3 "$2/.github/scripts/challenge.py" "$2"
 
 
 

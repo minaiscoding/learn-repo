@@ -1,9 +1,13 @@
 
-import yaml
 import sys
+import yaml
+
+
 CATEGORIES=['web','reverse','pwn','linux','misc','osint','programming','crypto','forensics']
 DIFFICULTY=['easy','ezmed','medium','medhard','hard','extreme']
-with open(f"{sys.argv[1]}/challenge.yml", "r") as stream:
+
+
+with open(f"{sys.argv[1]}/{sys.argv[2]}/challenge.yml", "r") as stream:
     try:
         challenge=yaml.safe_load(stream)
     except yaml.YAMLError as exc:
@@ -39,8 +43,13 @@ if challenge['difficulty'] not in DIFFICULTY:
     sys.exit(1)
 
 # Flag validation
+if "flags" not in challenge.keys():
+    print("The flag of the challenge is missing.")
+    sys.exit(1)
 
-
+if len(challenge["flags"][0])==0:
+    print("The author field can't be empty.")
+    sys.exit(1)
 
 with open(f'{sys.argv[1]}/counter.yaml','r') as file:
     data = yaml.full_load(file)

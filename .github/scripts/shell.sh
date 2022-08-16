@@ -1,5 +1,5 @@
 [[ $1 =~ ^([^\/]+)\/([^\/,]+) ]]
-FOLDERPATH="${BASH_REMATCH[1]}/${BASH_REMATCH[2]}"
+FOLDERPATH="$2"
 
 
 if [ ! -f $FOLDERPATH/challenge.yml ]; then

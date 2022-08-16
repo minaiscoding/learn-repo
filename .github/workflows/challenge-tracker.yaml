@@ -18,7 +18,7 @@ jobs:
           # scripts/only_one_chall.sh
           chmod +x "${GITHUB_WORKSPACE}/.github/scripts/only_one_chall.sh"       
             # run script
-           "${GITHUB_WORKSPACE}/.github/scripts/only_one_chall.sh" "${{ steps.file_changes.outputs.files}}"
+          "${GITHUB_WORKSPACE}/.github/scripts/only_one_chall.sh" "${{ steps.file_changes.outputs.files}}"
       - name: Update counter
         if: ${{ success() }}
       - uses: actions/setup-python@v4

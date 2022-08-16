@@ -38,7 +38,7 @@ if challenge['difficulty'] not in DIFFICULTY:
     print("The difficulty of the challenge is unkown.")
     sys.exit(1)
 
-# Flag validation
+# updating counter
 
 
 

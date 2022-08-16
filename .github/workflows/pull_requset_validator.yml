@@ -27,13 +27,11 @@ jobs:
            # run script
           "${GITHUB_WORKSPACE}/.github/scripts/yml_validation.sh" "${{ steps.file_changes.outputs.files}}" "${GITHUB_WORKSPACE}"
       - name: Update counter
-        if: ${{ success() }}
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
         run: |
-          git config --global user.name "minaiscoding"
-          git config --global user.email "khadir04kh@gmail.com"
-          git config --global user.name "John Doe"
-          git add counter.yaml
-          git commit -m 'updated counter'
-          git push
-
+        # scripts/update.sh
+          chmod +x "${GITHUB_WORKSPACE}/.github/scripts/update.sh"       
+          # run script
+          "${GITHUB_WORKSPACE}/.github/scripts/update.sh" "${{ steps.file_changes.outputs.files}}" "${GITHUB_WORKSPACE}"
+          
       

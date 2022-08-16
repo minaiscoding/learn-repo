@@ -8,6 +8,7 @@ if [ ! -f $FOLDERPATH/challenge.yml ]; then
 fi
 
 FILE=$FOLDERPATH/challenge.yml
+pip install PyYaml
 
 python "$2/.github/scripts/challenge.py" "$2" "$FOLDERPATH"
 

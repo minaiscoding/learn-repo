@@ -3,7 +3,7 @@ import yaml
 import sys
 CATEGORIES=['web','reverse','pwn','linux','misc','osint','programming','crypto','forensics']
 DIFFICULTY=['easy','ezmed','medium','medhard','hard','extreme']
-with open(f"{sys.argv[1]}/challenge.yml", "r") as stream:
+with open(f"{sys.argv[1]}/{sys.argv[2]}/challenge.yml", "r") as stream:
     try:
         challenge=yaml.safe_load(stream)
     except yaml.YAMLError as exc:

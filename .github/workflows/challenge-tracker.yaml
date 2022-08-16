@@ -12,21 +12,13 @@ jobs:
 
       - id: github-checkout
         uses: actions/checkout@v2
-
-      - name: Check if only one chall added
-        run: |
-          # scripts/only_one_chall.sh
-          chmod +x "${GITHUB_WORKSPACE}/.github/scripts/only_one_chall.sh"       
-            # run script
-          "${GITHUB_WORKSPACE}/.github/scripts/only_one_chall.sh" "${{ steps.file_changes.outputs.files}}"
       - name: Update counter
-        if: ${{ success() }}
       - uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-      - name: Validate .yml file
+      - name: update counter
         run: |
-          # scripts/yml_validation.sh
+          # scripts/shell.sh
           chmod +x "${GITHUB_WORKSPACE}/.github/scripts/shell.sh"       
             # run script
           "${GITHUB_WORKSPACE}/.github/scripts/shell.sh" "${{ steps.file_changes.outputs.files}}" "${GITHUB_WORKSPACE}"

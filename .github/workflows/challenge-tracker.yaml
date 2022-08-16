@@ -37,4 +37,4 @@ jobs:
           git config --global user.name "John Doe"
           git add counter.yaml
           git commit -m 'updated counter'
-          git push
+          git push origin main

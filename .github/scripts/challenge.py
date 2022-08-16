@@ -40,9 +40,13 @@ if challenge['difficulty'] not in DIFFICULTY:
 
 # updating counter
 
+try:
+    file = open(f'{sys.argv[1]}/counter.yaml','r')
+except FileNotFoundError:
+    file = open(f'{sys.argv[1]}/counter.yaml','w')
+    file.writelines('Challenges : 0\n')
 
-
-with open(f'{sys.argv[1]}/counter.yaml','r') as file:
+with file:
     data = yaml.full_load(file)
     num = data['Challenges']+1 
     data['Challenges'] = num

@@ -1,0 +1,9 @@
+name: "{{cookiecutter.name}}"
+author: "author"
+category: web
+difficulty: hard
+flags: 'Shellmates{flag}'
+description: This is a sample description
+value: 100
+type: standard
+love: True

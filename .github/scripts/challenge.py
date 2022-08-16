@@ -8,10 +8,10 @@ DIFFICULTY=['easy','ezmed','medium','medhard','hard','extreme']
 
 with open(f"{sys.argv[1]}/{sys.argv[2]}/challenge.yml", "r") as stream:
     try:
-    	challenge=yaml.safe_load(stream)
+        challenge=yaml.safe_load(stream)
     except yaml.YAMLError as exc:
-    	print(exc)
-    	sys.exit(1)
+        print(exc)
+        sys.exit(1)
 
 
 # Author validation

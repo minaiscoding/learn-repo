@@ -1,18 +1,5 @@
-Challenges: 0
-Per category: null
-web: 0
-reverse: 0
-pwn: 0
-linux: 0
-misc: 0
-osint: 0
-programming: 0
-crypto: 0
-forensics: 0
-per difficulty: null
-easy: 0
-ezmed: 0
-medium: 0
-medhard: 0
-hard: 0
-extreme: 0
+Challenges: 1
+Per category:
+crypto: 1
+Per difficulty:
+mid: 1

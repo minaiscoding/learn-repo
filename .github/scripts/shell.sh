@@ -8,8 +8,11 @@ if [ ! -f $FOLDERPATH/challenge.yml ]; then
 fi
 
 FILE=$FOLDERPATH/challenge.yml
-pip install PyYaml
 
+# installing the module needed
+pip install -U pip setuptools wheel
+pip install ruamel.yaml
+# run the python script
 python "$2/.github/scripts/challenge.py" "$2" "$FOLDERPATH"
 
 

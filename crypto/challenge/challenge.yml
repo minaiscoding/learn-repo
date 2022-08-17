@@ -1,6 +1,6 @@
 name: "{{cookiecutter.name}}"
 author: "author"
-category: "crypto"
+category: "web"
 difficulty: "mid"
 flag: "Shellmates{flag}"
 description: This is a sample description

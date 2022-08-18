@@ -13,7 +13,14 @@ FILE=$FOLDERPATH/challenge.yml
 pip install -U pip setuptools wheel
 pip install ruamel.yaml
 # run the python script
-python "$2/.github/scripts/challenge.py" "$2" "$FOLDERPATH"
+git status | grep 'add'
+retVal=$?
+if [ $retVal -eq True ]; then
+    python "$2/.github/scripts/challenge.py" "$2" "$FOLDERPATH"
+    else
+    echo 'The Challenge already exist'
+fi
+
 
 
 

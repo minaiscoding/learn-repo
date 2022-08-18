@@ -17,6 +17,13 @@ git status | grep 'add'
 retVal=$?
 if [ $retVal -eq True ]; then
     python "$2/.github/scripts/challenge.py" "$2" "$FOLDERPATH"
+    echo updating.
+    git config --global user.name GitHub Action
+    git config --global user.email github-action@users.noreply.github.com
+    git add counter.yaml
+    git commit -m 'updated counter'
+    git branch -a
+    git push origin main
     else
     echo 'The Challenge already exist'
 fi

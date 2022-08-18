@@ -27,10 +27,4 @@ jobs:
           chmod +x "${GITHUB_WORKSPACE}/.github/scripts/shell.sh"       
             # run script
           "${GITHUB_WORKSPACE}/.github/scripts/shell.sh" "${{ steps.file_changes.outputs.files}}" "${GITHUB_WORKSPACE}"
-          echo updating.
-          git config --global user.name GitHub Action
-          git config --global user.email github-action@users.noreply.github.com
-          git add counter.yaml
-          git commit -m 'updated counter'
-          git branch -a
-          git push origin main
+

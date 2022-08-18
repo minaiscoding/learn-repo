@@ -5,4 +5,4 @@ difficulty: "easy"
 flag: "Shellmates{flag}"
 description: This  a sample description
 value: 100
-type: standard
+type: nope

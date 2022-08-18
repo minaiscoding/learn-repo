@@ -1,13 +1,15 @@
 import sys
 from ruamel import yaml 
 # Author : Hinami.
-# Functions needed
+
 DIFFICULTIES = ['Easy','Ezmid','Midium','Medhard','Hard','Extreme']
 
+# Functions needed
 def init_category(cat:str,data):
+    '''add the new category set to the file if it doesn't already exist'''
     try:
         if category not in data.keys():
-           data.insert(1, cat, [{'Easy': 0},{'Ezmid':0},{'Medium': 0},{'Medhard':0},{'Hard': 0},{'Extreme': 0}], comment='This is the phone number')
+            data.insert(1, cat, [{'Easy': 0},{'Ezmid':0},{'Medium': 0},{'Medhard':0},{'Hard': 0},{'Extreme': 0}], comment='This is the phone number')
     except AttributeError: # AKA the file was empty
         data = yaml.round_trip_load(
 f'''{category} :
@@ -21,8 +23,7 @@ f'''{category} :
     )
     return data
 
-def num_dif(dif:str):
-    return DIFFICULTIES.index(dif)
+
 # examine challenge.yaml
 with open(f"{sys.argv[1]}/{sys.argv[2]}/challenge.yml", "r") as stream:
     try:
@@ -54,8 +55,9 @@ data = init_category(category,data)
 # update difficulty
 
 difficulty = challenge['difficulty'].capitalize()
+index = DIFFICULTIES.index(difficulty)
 try:
-    data[category][num_dif(difficulty)][difficulty] +=  1
+    data[category][index][difficulty] +=  1
 except KeyError:
     print("The difficulty is written wrong or doesn't exist")
     sys.exit(1)

@@ -3,6 +3,6 @@ author: "author"
 category: "web"
 difficulty: "easy"
 flag: "Shellmates{flag}"
-description: This is a sample description
+description: This  a sample description
 value: 100
 type: standard

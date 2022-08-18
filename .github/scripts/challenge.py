@@ -4,8 +4,21 @@ from ruamel import yaml
 # Functions needed
 DIFFICULTIES = ['Easy','Ezmid','Midium','Medhard','Hard','Extreme']
 
-def init_category(cat:str):
-    data.insert(1, cat, [{'Easy': 0},{'Ezmid':0},{'Medium': 0},{'Medhard':0},{'Hard': 0},{'Extreme': 0}], comment='This is the phone number')
+def init_category(cat:str,data):
+    try:
+        if category not in data.keys():
+           data.insert(1, cat, [{'Easy': 0},{'Ezmid':0},{'Medium': 0},{'Medhard':0},{'Hard': 0},{'Extreme': 0}], comment='This is the phone number')
+    except AttributeError: # AKA the file was empty
+        data = yaml.round_trip_load(
+f'''{category} :
+- Easy: 0
+- Ezmid: 0
+- Medium: 0
+- Medhard: 0
+- Hard: 0
+- Extreme: 0
+'''
+    )
     return data
 
 def num_dif(dif:str):
@@ -36,20 +49,7 @@ data = yaml.round_trip_load(file)
 
 # update categories
 category = challenge['category'].capitalize()
-try:
-    if category not in data.keys():
-        data = init_category(category)
-except AttributeError: # AKA the file was empty
-    data = yaml.round_trip_load(
-f'''{category} :
-- Easy: 0
-- Ezmid: 0
-- Medium: 0
-- Medhard: 0
-- Hard: 0
-- Extreme: 0
-'''
-    )
+data = init_category(category,data)
 
 # update difficulty
 

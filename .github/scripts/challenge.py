@@ -1,7 +1,15 @@
 import sys
 from ruamel import yaml 
 # Author : Hinami.
+# Functions needed
+DIFFICULTIES = ['Easy','Ezmid','Midium','Medhard','Hard','Extreme']
 
+def init_category(cat:str):
+    data.insert(1, cat, [{'Easy': 0},{'Ezmid':0},{'Medium': 0},{'Medhard':0},{'Hard': 0},{'Extreme': 0}], comment='This is the phone number')
+    return data
+
+def num_dif(dif:str):
+    return DIFFICULTIES.index(dif)
 # examine challenge.yaml
 with open(f"{sys.argv[1]}/{sys.argv[2]}/challenge.yml", "r") as stream:
     try:
@@ -14,32 +22,43 @@ with open(f"{sys.argv[1]}/{sys.argv[2]}/challenge.yml", "r") as stream:
 try:
     file = open(f'{sys.argv[1]}/counter.yaml','r')
 except FileNotFoundError:
-    file = open(f'{sys.argv[1]}/counter.yaml','w')
-    file.writelines(['Challenges : 0\n','Per category:\n','Per difficulty:\n'])
+
+# initialise the file with one category so that  'data' won't be a nonetype (avoiding attributes errors )
+
+    file = open(f'{sys.argv[1]}/counter.yaml','x')
     file.close()
     file = open(f'{sys.argv[1]}/counter.yaml','r')
 data = yaml.round_trip_load(file)
-data['Challenges'] = data['Challenges']+1 
+
+
 
 ######################################################
 
 # update categories
-category = challenge['category']
-pos = list(data.keys()).index('Per category') +1
-if category not in data.keys():
-    data.insert(pos, category, 1,comment='New category added')
-else:
-    data[category] = data[category] + 1
-
+category = challenge['category'].capitalize()
+try:
+    if category not in data.keys():
+        data = init_category(category)
+except AttributeError: # AKA the file was empty
+    data = yaml.round_trip_load(
+f'''{category} :
+- Easy: 0
+- Ezmid: 0
+- Medium: 0
+- Medhard: 0
+- Hard: 0
+- Extreme: 0
+'''
+    )
 
 # update difficulty
-difficulty = challenge['difficulty']
-pos = list(data.keys()).index('Per difficulty') +1
-if difficulty not in data.keys():
-    data.insert(pos, difficulty, 1)
-else:
-    data[difficulty] = data[difficulty] + 1
-    
+
+difficulty = challenge['difficulty'].capitalize()
+try:
+    data[category][num_dif(difficulty)][difficulty] +=  1
+except KeyError:
+    print("The difficulty is written wrong or doesn't exist")
+    sys.exit(1)
 
 file.close()
 
